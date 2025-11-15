@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speclarify</title>
+  <meta name="x-apple-disable-message-reformatting" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="IE=edge" http-equiv="x-ua-compatible" />
+  <!--[if gte mso 9
+  ]><xml>
+  <o:OfficeDocumentSettings>
+  <o:AllowPNG />
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+  </o:OfficeDocumentSettings>
+  </xml><!
+  [endif]-->
+
+  <!--[if (gte mso 9)|(IE)]>
+  <style type="text/css">
+  table {
+  border-collapse: collapse !important;
+  mso-table-lspace: 0pt !important;
+  mso-table-rspace: 0pt !important;
+  }
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  span,
+  td,
+  strong,
+  li {
+  font-family: Arial, Helvetica, Verdana, sans-serif !important;
+  }
+  h1,
+  h2,
+  h3 {
+  font-family: Arial, Helvetica, sans-serif !important;
+  }
+  .ExternalClass .not-for-outlook,
+  [owa] .not-for-outlook {
+  display: none;
+  }
+  .desktop-only {
+  display: table !important;
+  }
+  </style>
+  <![endif]-->
+  <style type="text/css">
+    #outlook a {
+      padding: 0;
+      color: inherit;
+    }
+
+    .ReadMsgBody {
+      width: 100%;
+    }
+
+    .ExternalClass {
+      width: 100%;
+    }
+
+    .ExternalClass,
+    .ExternalClass span,
+    .ExternalClass td,
+    .ExternalClass div {
+      line-height: 100%;
+    }
+
+    body,
+    table,
+    td,
+    a {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    table,
+    td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    body {
+      background-color: #f2f2f2;
+      font-family: Helvetica, Arial, sans-serif;
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+
+    img {
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+    }
+
+    a[x-apple-data-detectors] {
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
+    .webkit-hide {
+      display: none !important;
+    }
+
+    .webkit-show {
+      height: auto !important;
+      width: auto !important;
+      max-width: none !important;
+      max-height: none !important;
+      overflow: auto !important;
+      visibility: visible !important;
+      display: block !important;
+    }
+
+    #font-weight-normal {
+      font-weight: normal !important;
+    }
+
+    .link-hover:hover {
+      text-decoration: none !important;
+    }
+
+    @media only screen and (max-width: 600px) {
+      body[yahoo] .deviceWidth {
+        width: 100% !important;
+        padding: 0;
+        min-width: 100% !important;
+      }
+
+      .deviceWidth {
+        width: 100% !important;
+        padding: 0 !important;
+        min-width: 100% !important;
+      }
+
+      .mobile-hide {
+        display: none !important;
+      }
+
+      .mobile-show {
+        display: block !important;
+      }
+
+      .mobile-center {
+        text-align: center !important;
+      }
+
+      .mobile-center2 {
+        margin: 0 auto;
+      }
+
+      .img-max {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      .img-max2 {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      .responsive-table {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .mobilespace24 {
+        height: 24px !important;
+        min-height: 24px !important;
+        max-height: 24px !important;
+        line-height: 24px !important;
+      }
+
+      .f48 {
+        font-size: 28px !important;
+        line-height: 38px !important;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      .emailbody {
+        width: 100vw !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      u + .emailbody {
+        width: 100% !important;
+      }
+    }
+
+
+    @media screen yahoo and
+
+    (
+    min-width:
+
+    480
+    px
+
+    )
+    {
+    .w510 {
+      width: 510px !important;
+      min-width: 300px !important;
+      max-width: 510px !important;
+    }
+
+    .w90 {
+      width: 90px !important;
+      min-width: 90px !important;
+      max-width: 90px !important;
+    }
+
+    .w188 {
+      width: 188px !important;
+      min-width: 188px !important;
+      max-width: 188px !important;
+    }
+
+    .w324 {
+      width: 24px !important;
+      min-width: 24px !important;
+      max-width: 24px !important;
+    }
+
+    .w141 {
+      width: 141px !important;
+      min-width: 141px !important;
+      max-width: 141px !important;
+    }
+
+    .w290 {
+      width: 290px !important;
+      min-width: 290px !important;
+      max-width: 290px !important;
+    }
+
+    }
+    @media only screen and (max-width: 480px) {
+      .emailbody {
+        width: 100vw !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      u + .emailbody {
+        width: 100% !important;
+      }
+    }
+
+    [owa] .w510 {
+      width: 510px !important;
+      min-width: 300px !important;
+      max-width: 510px !important;
+    }
+
+    [owa] .w90 {
+      width: 90px !important;
+      min-width: 90px !important;
+      max-width: 90px !important;
+    }
+
+    [owa] .w188 {
+      width: 188px !important;
+      min-width: 188px !important;
+      max-width: 188px !important;
+    }
+
+    [owa] .w324 {
+      width: 24px !important;
+      min-width: 24px !important;
+      max-width: 24px !important;
+    }
+
+    [owa] .w141 {
+      width: 141px !important;
+      min-width: 141px !important;
+      max-width: 141px !important;
+    }
+
+    [owa] .w290 {
+      width: 290px !important;
+      min-width: 290px !important;
+      max-width: 290px !important;
+    }
+  </style>
+</head>
+<body class="emailbody" dir="ltr" lang="en" style="margin: 0; padding:0; background-color: #ffffff;">
+<div
+  style="display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial, Helvetica, sans-serif;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+  Thanks for helping us keep your account secure! Click the button below to finish verifying your email address.
+
+</div>
+<div style="display: none; max-height: 0px; overflow: hidden; color:#ffffff;">
+   ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+</div>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="deviceWidth" style="width:100%; min-width:100%;"
+       width="100%">
+  <tbody>
+  <tr>
+    <td align="center" bgcolor="#ffffff">
+      <!--[if (gte mso 9)|(IE)]>
+      <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+        <tr>
+          <td align="center" valign="top" width="600" style="width:600px;">
+      <![endif]-->
+
+      <!-- header -->
+      <table border="0" cellpadding="0" cellspacing="0" class="deviceWidth" style="width:100%; max-width:600px;"
+             width="600">
+        <tbody>
+        <tr>
+          <td height="32" style="height:32px; min-height:32px; line-height:32px; font-size:1px;">
+             
+          </td>
+        </tr>
+        <tr>
+          <td height="32" style="height:32px; min-height:32px; line-height:32px; font-size:1px;">
+             
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- / header -->
+
+      <!-- section -->
+      <table border="0" cellpadding="0" cellspacing="0" class="deviceWidth" style="max-width: 600px;" width="100%">
+        <tbody>
+        <tr>
+          <td align="center" bgcolor="#ffffff">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+              <tr>
+                <td valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody>
+                    <tr>
+                      <td style="width: 13%; min-width: 40px" width="13%"> </td>
+                      <td align="center">
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+                          <tbody>
+                          <tr>
+                            <td align="center" style="padding-top: 16px">
+                              <h1 class="f48" style="
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 28px;
+line-height: 38px;
+font-weight: bold;
+color: #4b4b4b;
+">
+                                Invited to {{organizationName}}
+
+                              </h1>
+
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td align="center" style="padding-top: 16px">
+                              <p
+                                style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:26px; font-weight:normal; color:#777777; max-width:380px; text-align:center;">
+                                You have been invited to join {{organizationName}} on Speclarify. Click the button below
+                                to
+                                create an account and join the organization.
+                              </p>
+
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td align="center" style="padding-top: 16px">
+                              <div>
+                                <!--[if mso]>
+                                <v:roundrect
+                                xmlns:v="urn:schemas-microsoft-com:vml"
+                                xmlns:w="urn:schemas-microsoft-com:office:word"
+                                href="{{confirmationUrl}}"
+                                style="
+                                height: 43px;
+                                v-text-anchor: middle;
+                                width: 230px;
+                                box-shadow: 0 3px 0 0 #0a9be0;
+                                "
+                                arcsize="20%"
+                                strokecolor="#1677ff"
+                                fillcolor="#1677ff"
+                                >
+                                <w:anchorlock />
+                                <center
+                                style="
+                                font-family: sans-serif;
+                                font-size: 16px;
+                                color: #ffffff;
+                                font-weight: bold;
+                                line-height: 19px;
+                                "
+                                >
+                                &nbsp;&nbsp;CONFIRM EMAIL
+                                &nbsp;&nbsp;
+                                </center>
+                                </v:roundrect>
+                                <![endif]-->
+                                <!--[if !mso]><!-- -->
+                                <table border="0" cellpadding="0" cellspacing="0" style="
+width: 215px;
+border-spacing: 0;
+border-collapse: collapse;
+mso-hide: all;
+mso-table-lspace: 0;
+mso-table-rspace: 0;
+" width="215">
+                                  <tbody>
+                                  <tr>
+                                    <td align="center" height="43" style="
+border-collapse: collapse;
+mso-table-lspace: 0;
+mso-table-rspace: 0;
+background-color: #1677ff;
+-moz-border-radius: 9px;
+-webkit-border-radius: 9px;
+border-radius: 9px;
+box-shadow: 0 3px 0 0 #0a9be0;
+white-space: nowrap;
+">
+                                      <a
+                                        href="{{confirmationUrl}}"
+                                        style="
+display: inline-block;
+width: 100%;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 16px;
+font-weight: bold;
+line-height: 19px;
+color: #ffffff;
+text-align: center;
+text-decoration: none;
+-webkit-text-size-adjust: none;
+-ms-text-size-adjust: 100%;
+background-color: #1677ff;
+border-radius: 14px;
+border-top: 12px solid #1677ff;
+border-bottom: 12px solid #1677ff;
+text-transform: uppercase;
+">
+                                          JOIN NOW
+                                          
+                                      </a>
+                                    </td>
+                                  </tr>
+                                  </tbody>
+                                </table>
+
+                                <!--<![endif]-->
+                              </div>
+
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td style="width: 13%; min-width: 40px" width="13%"> </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                </td>
+              </tr>
+              <tr>
+                <td height="50"
+                    style="height:50px; min-height:50px; line-height:50px; font-size:1px; border-bottom:2px solid #f2f2f2;">
+                   
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- / section -->
+
+      <!-- Footer -->
+      <table border="0" cellpadding="0" cellspacing="0" class="deviceWidth" width="100%">
+        <tbody>
+        <tr>
+          <td align="center" style="padding-top:23px;">
+            <table border="0" cellpadding="0" cellspacing="0" style="max-width: 600px;" width="100%">
+              <tbody>
+              <tr>
+                <td style="width:32px; min-width:32px; max-width:32px;" width="32">
+                   
+                </td>
+                <td valign="top">
+                  <!--[if (gte mso 9)|(IE)]>
+                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="536">
+                    <tr>
+                      <td align="center" valign="top" width="105">
+                  <![endif]-->
+                  <!--[if (gte mso 9)|(IE)]>
+                  </td>
+                  <td align="center" valign="top" width="431">
+                  <![endif]-->
+                  <table align="left" border="0" cellpadding="0" cellspacing="0" class="responsive-table w290"
+                         style="min-width:100%; width:54%; max-width:100%;min-width:-webkit-calc(54%); min-width:calc(54%);width:-webkit-calc(287296px - 53600%);width: calc(287296px - 53600%);"
+                         width="290">
+                    <tbody>
+                    <tr>
+                      <td align="center">
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table align="center" border="0" cellspacing="0" cellpadding="0" width="300">
+                          <tr>
+                            <td align="center" valign="top" width="300">
+                        <![endif]-->
+                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                          <tr>
+                            <td align="left">
+                              <p
+                                style="Margin:0; margin:0; font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:15px; font-weight:400; color:#a7a7a7;">
+                                On Cebeci, Ziya Gokalp Cd. 48/A, 06420 Cankaya/Ankara
+                              </p>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                  <!--[if (gte mso 9)|(IE)]>
+                  </td>
+                  </tr>
+                  </table>
+                  <![endif]-->
+                </td>
+                <td style="width:32px; min-width:32px; max-width:32px;" width="32">
+                   
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td height="60" style="height:60px; min-height:60px; line-height:60px; font-size:1px;">
+             
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- / Footer -->
+
+      <!--[if (gte mso 9)|(IE)]>
+      </td>
+      </tr>
+      </table>
+      <![endif]-->
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- FIX FOR GMAIL iOS -->
+<div style="display:none; white-space:nowrap; font:15px courier; color:#ffffff;">
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</div>
+<!-- FIX FOR GMAIL iOS -->
+
+</body>
+</html>

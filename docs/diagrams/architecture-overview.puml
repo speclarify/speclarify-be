@@ -1,0 +1,53 @@
+@startuml ArchitectureOverview
+skinparam backgroundColor #FFFFFF
+skinparam handwritten false
+skinparam componentStyle rectangle
+
+rectangle "SpeClarify API (NestJS)" as API {
+  component "Authentication\nModule" as Auth
+  component "Project\nModule" as Project
+  component "Document\nModule" as Document
+  component "Requirement\nModule" as Requirement
+  component "Ambiguity\nModule" as Ambiguity
+  component "Dispatch\nGateway" as Dispatch
+  component "Chains\nModule" as Chains
+}
+
+rectangle "Async Events" as Events {
+  rectangle "DocumentParseRequest.<mime>" as DPR
+  rectangle "ParseRequirementsRequest" as PRR
+  rectangle "BulkCreateRequirementRequest" as BCRR
+  rectangle "IdentifyAmbiguityRequest" as IAR
+}
+
+folder "External Services" {
+  database "MongoDB" as Mongo
+  rectangle "MinIO" as MinIO
+  rectangle "Redis" as Redis
+  rectangle "SMTP" as SMTP
+  rectangle "OpenAI / LangChain" as OpenAI
+}
+
+Auth --> Mongo
+Project --> Mongo
+Document --> Mongo
+Requirement --> Mongo
+Ambiguity --> Mongo
+Dispatch --> Redis
+Document --> MinIO
+Requirement --> MinIO
+Ambiguity --> OpenAI
+Chains --> OpenAI
+API --> SMTP : emit `email.send`
+
+Document -> DPR
+DPR --> PRR
+PRR --> BCRR
+BCRR --> Requirement
+Requirement -> IAR
+IAR --> Ambiguity
+
+Dispatch --> Redis : store socketId
+Requirement --> Dispatch : emit websocket actions
+
+@enduml

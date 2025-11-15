@@ -1,0 +1,44 @@
+@startuml DocumentPipeline
+skinparam backgroundColor #FFFFFF
+skinparam sequenceArrowThickness 2
+skinparam sequenceLifeLineStrategy solid
+
+actor User
+participant "DocumentController" as Controller
+participant "DocumentService" as DocService
+participant "FileService" as FileService
+participant "EventEmitter" as Emitter
+participant "Parser Service" as Parser
+participant "RequirementsParserService" as ReqParser
+participant "RequirementService" as Requirement
+participant "AmbiguityService" as Ambiguity
+
+User -> Controller : POST /organizations/{org}/projects/{project}/documents
+Controller -> DocService : create()
+DocService -> FileService : uploadMulterFile()
+FileService --> DocService : object path
+DocService -> Requirement : ensure project exists
+DocService -> Emitter : emit DocumentParseRequest.<mime>
+
+loop Per document chunk
+  Emitter -> Parser : DocumentParseRequest.<mime>
+  Parser -> Parser : split text into chunks
+  Parser -> Emitter : emit ParseRequirementsRequest
+end
+
+loop Parsed documents
+  Emitter -> ReqParser : ParseRequirementsRequest
+  ReqParser -> ReqParser : extract + validate requirements
+  ReqParser -> Emitter : emit BulkCreateRequirementRequest
+end
+
+loop Valid requirements
+  Emitter -> Requirement : BulkCreateRequirementRequest
+  Requirement -> Requirement : infer priority & type
+  Requirement -> Emitter : emit IdentifyAmbiguityRequest
+end
+
+Emitter -> Ambiguity : IdentifyAmbiguityRequest
+Ambiguity -> Ambiguity : run ambiguity chain
+Ambiguity --> MongoDB : store ambiguity record
+@enduml

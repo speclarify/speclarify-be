@@ -1,0 +1,52 @@
+@startuml SecurityContext
+skinparam backgroundColor #FFFFFF
+skinparam componentStyle rectangle
+
+rectangle "AuthenticationModule" as Auth {
+  component "LocalStrategy" as Local
+  component "JwtStrategy" as Jwt
+  component "JwtAuthGuard" as JwtGuard
+}
+
+rectangle "Guards" as Guards {
+  component "UserRolesGuard" as UserGuard
+  component "OrganizationRolesGuard" as OrgGuard
+}
+
+rectangle "Decorators" as Decorators {
+  component "@Public" as Public
+  component "@UserRoles" as UserRoles
+  component "@OrganizationRoles" as OrgRoles
+  component "@CurrentUser" as CurrentUser
+}
+
+rectangle "Context" as Context {
+  component "Express Request" as Request
+  component "Socket Handshake" as Handshake
+}
+
+rectangle "Services" as Services {
+  component "UserService" as UserService
+  component "OrganizationMemberService" as MemberService
+  component "RedisService" as RedisService
+  component "DispatchGateway" as Dispatch
+}
+
+Auth -- JwtGuard
+JwtGuard --> UserService : load user by token
+JwtGuard --> MemberService : load memberships
+JwtGuard --> Request : attach user & membership
+
+UserGuard --> Request
+OrgGuard --> Request
+UserGuard <- UserRoles
+OrgGuard <- OrgRoles
+JwtGuard <- Public : bypass
+
+Dispatch --> RedisService : socket tracking
+Dispatch --> Jwt : verify handshake token
+Dispatch --> Request : reuse JWT secret
+
+CurrentUser --> Request
+
+@enduml

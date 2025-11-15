@@ -1,0 +1,120 @@
+services:
+  app:
+    build:
+      context: .
+    image: speclarify-be:latest
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      SERVER_PORT: ${SERVER_PORT:-3000}
+      MONGO_URI: mongodb://mongo:27017/${MONGO_DB_NAME:-speclarify}
+      MONGO_USER: ${MONGO_USER:-root}
+      MONGO_PASSWORD: ${MONGO_PASSWORD:-example}
+      MONGO_DB_NAME: ${MONGO_DB_NAME:-speclarify}
+      MONGO_AUTH_SOURCE: ${MONGO_AUTH_SOURCE:-admin}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-}
+      REDIS_DB: ${REDIS_DB:-0}
+      MINIO_ENDPOINT: minio
+      MINIO_PORT: 9000
+      MINIO_USE_SSL: ${MINIO_USE_SSL:-false}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-${MINIO_ROOT_USER:-minioadmin}}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-${MINIO_ROOT_PASSWORD:-minioadmin}}
+      MINIO_BUCKET_NAME: ${MINIO_BUCKET_NAME:-speclarify}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:5000}
+      MAILER_HOST: ${MAILER_HOST:-mailhog}
+      MAILER_PORT: ${MAILER_PORT:-1025}
+      MAILER_SECURE: ${MAILER_SECURE:-false}
+      MAILER_REQUIRE_TLS: ${MAILER_REQUIRE_TLS:-false}
+      MAILER_USER: ${MAILER_USER:-mailhog}
+      MAILER_PASS: ${MAILER_PASS:-mailhog}
+      MAILER_FROM: "${MAILER_FROM:-SpeClarify <no-reply@example.com>}"
+    ports:
+      - "${SERVER_PORT:-3000}:3000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      mailhog:
+        condition: service_started
+    networks:
+      - speclarify-net
+
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-example}
+      MONGO_INITDB_DATABASE: ${MONGO_DB_NAME:-speclarify}
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - speclarify-net
+
+  redis:
+    image: redis:7
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - speclarify-net
+
+  minio:
+    image: minio/minio:latest
+    command: ["server", "/data", "--console-address", ":9090"]
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - speclarify-net
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - speclarify-net
+
+networks:
+  speclarify-net:
+    driver: bridge
+
+volumes:
+  mongo_data:
+  redis_data:
+  minio_data:
